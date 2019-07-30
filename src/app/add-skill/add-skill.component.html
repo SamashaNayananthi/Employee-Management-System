@@ -1,0 +1,12 @@
+<form name="form" class="example-form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+
+  <mat-form-field class="example-full-width">
+    <input type="text" matInput placeholder="Skill Name * " formControlName="skillName" [ngClass]="{'is-invalid':form.get('skillName').touched && form.get('skillName').invalid}">
+  </mat-form-field>
+  <div *ngIf="form.get('skillName').touched && form.get('skillName').invalid" class="invalid-feedback">
+    <div *ngIf="form.get('skillName').errors.required">Skill Name is <strong>required</strong></div>
+  </div>
+
+  <button class="btn" mat-raised-button color="accent" [disabled]="!form.valid">Add Skill</button>
+
+</form>

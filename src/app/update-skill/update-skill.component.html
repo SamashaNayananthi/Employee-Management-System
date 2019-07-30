@@ -1,0 +1,16 @@
+<form name="form" class="example-form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+
+  <mat-form-field class="example-full-width">
+    <input type="number" matInput placeholder="Skill ID *" formControlName="id" [ngClass]="{'is-invalid':form.get('id').touched && form.get('id').invalid}">
+  </mat-form-field>
+  <div *ngIf="form.get('id').touched && form.get('id').invalid" class="invalid-feedback">
+    <div *ngIf="form.get('id').errors.required">Skill ID is <strong>required</strong>to update records</div>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <input type="text" matInput placeholder="Skill Name" formControlName="skillName">
+  </mat-form-field>
+
+  <button class="btn" mat-raised-button color="accent" [disabled]="!form.valid">Update Skill</button>
+
+</form>

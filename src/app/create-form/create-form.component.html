@@ -1,0 +1,62 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span class="topic">Sam - Employee Management System</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-tab-group class="tabs">
+  <mat-tab label="Add Employee">
+    <form name="form" class="example-form" [formGroup]="form" (ngSubmit)="form.valid && onSubmit()">
+
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="First Name *" formControlName="firstName" [ngClass]="{'is-invalid':form.get('firstName').touched && form.get('firstName').invalid}">
+      </mat-form-field>
+      <div *ngIf="form.get('firstName').touched && form.get('firstName').invalid" class="invalid-feedback">
+        <div *ngIf="form.get('firstName').errors.required">First Name is <strong>required</strong></div>
+      </div>
+
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="Last Name *" formControlName="lastName" [ngClass]="{'is-invalid':form.get('lastName').touched && form.get('lastName').invalid}">
+      </mat-form-field>
+      <div *ngIf="form.get('lastName').touched && form.get('lastName').invalid" class="invalid-feedback">
+        <div *ngIf="form.get('lastName').errors.required">Last Name is <strong>required</strong></div>
+      </div>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date *" formControlName="dob" [ngClass]="{'is-invalid':form.get('dob').touched && form.get('dob').invalid}">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="Email *" formControlName="email" [ngClass]="{'is-invalid':form.get('email').touched && form.get('email').invalid}">
+      </mat-form-field>
+      <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+        <div *ngIf="form.get('email').errors.required">Email is <strong>required</strong></div>
+        <div *ngIf="form.get('email').errors.email">Email must be a valid email address</div>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Skills</mat-label>
+        <mat-select [formControl]="form.controls.skillsSet" multiple>
+          <mat-option *ngFor="let skill of skillsList" [value]="skill">{{skill.s_name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+
+      <button class="btn" mat-raised-button color="accent" [disabled]="!form.valid">Add Employee</button>
+
+    </form>
+  </mat-tab>
+
+  <mat-tab label="View Employee Details"><app-view-employee></app-view-employee></mat-tab>
+  <mat-tab label="Update Employee Details"> <app-update-employee></app-update-employee>  </mat-tab>
+  <mat-tab label="Delete Employee"><app-delete-employee></app-delete-employee></mat-tab>
+  <mat-tab label="Add Skills"><app-add-skill></app-add-skill></mat-tab>
+  <mat-tab label="View Skills"> <app-view-skills></app-view-skills></mat-tab>
+  <mat-tab label="Update Skills"><app-update-skill></app-update-skill></mat-tab>
+  <mat-tab label="Delete Skills"><app-delete-skill></app-delete-skill></mat-tab>
+</mat-tab-group>
+
+
